@@ -1,0 +1,11 @@
+{
+  "players": [
+    { "id": 1, "name": "CommanderX", "alliance": "Alpha", "resources": { "metal": 1000, "crystal": 500 } }
+  ],
+  "planets": [
+    { "id": 1, "owner": 1, "name": "Terra Nova", "resources": { "metal": 200, "crystal": 100 } }
+  ],
+  "auth": [
+    { "id": 1, "username": "CommanderX", "token": "mock-jwt-token" }
+  ]
+}
