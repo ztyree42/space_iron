@@ -1,11 +1,22 @@
 {
   "players": [
-    { "id": 1, "name": "CommanderX", "alliance": "Alpha", "resources": { "metal": 1000, "crystal": 500 } }
+    { "id": 1, "name": "CommanderX", "alliance": "Alpha", "resources": { "metal": 1000, "crystal": 500 }, "fleet": [1], "planets": [1] },
+    { "id": 2, "name": "NovaQueen", "alliance": "Beta", "resources": { "metal": 800, "crystal": 700 }, "fleet": [2], "planets": [2] }
   ],
   "planets": [
-    { "id": 1, "owner": 1, "name": "Terra Nova", "resources": { "metal": 200, "crystal": 100 } }
+    { "id": 1, "owner": 1, "name": "Terra Nova", "resources": { "metal": 200, "crystal": 100 } },
+    { "id": 2, "owner": 2, "name": "Beta Prime", "resources": { "metal": 300, "crystal": 400 } }
   ],
   "auth": [
-    { "id": 1, "username": "CommanderX", "token": "mock-jwt-token" }
+    { "id": 1, "username": "CommanderX", "token": "mock-jwt-token-1" },
+    { "id": 2, "username": "NovaQueen", "token": "mock-jwt-token-2" }
+  ],
+  "fleets": [
+    { "id": 1, "owner": 1, "ships": [{ "type": "frigate", "count": 10 }] },
+    { "id": 2, "owner": 2, "ships": [{ "type": "destroyer", "count": 5 }] }
+  ],
+  "actions": [
+    { "id": 1, "type": "attack", "player": 1, "target": 2, "status": "pending" },
+    { "id": 2, "type": "move", "player": 2, "target": 1, "status": "complete" }
   ]
 }
