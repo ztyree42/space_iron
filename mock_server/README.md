@@ -4,28 +4,45 @@ This directory contains a local mock server for frontend development using [json
 
 ## Getting Started
 
-1. Install json-server (globally or as a dev dependency):
+1. **Install json-server** (globally or as a dev dependency):
    ```sh
    npm install -g json-server
    # or
    npm install --save-dev json-server
    ```
-2. Start the mock server:
+2. **Start the mock server**:
    ```sh
    json-server --watch mock_server/db.json --port 4000
    ```
-3. The API will be available at http://localhost:4000
+3. The API will be available at [http://localhost:4000](http://localhost:4000)
 
 ## Endpoints
-- `/players`
-- `/planets`
-- `/auth`
+- `/players` — Player data
+- `/planets` — Planet data
+- `/auth` — Authentication (mocked)
 
 ## Usage
-- Integrate the frontend with the mock server for local development.
-- Update `db.json` to add more mock data as needed.
+- Integrate the frontend with the mock server for local development (see `api.dart` in the Flutter app).
+- Update `db.json` to add or modify mock data as needed.
+
+### Example API Call (using curl)
+```sh
+curl http://localhost:4000/players
+```
+
+### Example API Call (in Dart)
+```dart
+import 'package:http/http.dart' as http;
+final response = await http.get(Uri.parse('http://localhost:4000/players'));
+```
+
+## Troubleshooting
+- If you get an error about the port being in use, stop any other process using port 4000 or change the port number.
+- If you change `db.json`, the server will reload automatically.
+- If you add new endpoints, update both `db.json` and this README.
 
 ## Switching Between Mock and Real Backend
 - Use environment variables or config files in your frontend to toggle between the mock server and the real backend.
+- See `ApiConfig` in `lib/api.dart` for an example.
 
 ---
