@@ -10,11 +10,19 @@ This directory contains a local mock server for frontend development using [json
    # or
    npm install --save-dev json-server
    ```
-2. **Start the mock server**:
+2. **Start the mock server** (recommended):
+   ```sh
+   ./mock_server/start_mock_server.sh
+   ```
+   Or manually:
    ```sh
    json-server --watch mock_server/db.json --port 4000
    ```
-3. The API will be available at [http://localhost:4000](http://localhost:4000)
+3. **Stop the mock server** (Linux/macOS):
+   ```sh
+   ./mock_server/stop_mock_server.sh
+   ```
+4. The API will be available at [http://localhost:4000](http://localhost:4000)
 
 ## Endpoints
 - `/players` — Player data
