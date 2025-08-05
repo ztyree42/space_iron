@@ -1,0 +1,105 @@
+openapi: 3.0.0
+info:
+  title: Space Iron API
+  version: 0.1.0
+description: |
+  API contract for Space Iron backend. This file defines the major endpoints and includes example responses for use with mock servers.
+
+paths:
+  /auth/login:
+    post:
+      summary: User login
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+      responses:
+        '200':
+          description: Successful login
+          content:
+            application/json:
+              example:
+                token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+                userId: "user_123"
+        '401':
+          description: Invalid credentials
+
+  /players/{id}:
+    get:
+      summary: Get player profile
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Player profile
+          content:
+            application/json:
+              example:
+                id: "user_123"
+                name: "Commander Z"
+                planets: ["planet_1", "planet_2"]
+                alliance: "alliance_42"
+        '404':
+          description: Player not found
+
+  /planets/{id}:
+    get:
+      summary: Get planet details
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Planet details
+          content:
+            application/json:
+              example:
+                id: "planet_1"
+                name: "New Terra"
+                resources:
+                  metal: 1000
+                  crystal: 500
+                  deuterium: 200
+                buildings:
+                  mine: 5
+                  factory: 3
+                  lab: 2
+        '404':
+          description: Planet not found
+
+  /fleets/{id}/move:
+    post:
+      summary: Move fleet
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                destination:
+                  type: string
+      responses:
+        '200':
+          description: Fleet movement started
+          content:
+            application/json:
+              example:
+                status: "moving"
+                eta: 3600
+        '404':
+          description: Fleet not found
