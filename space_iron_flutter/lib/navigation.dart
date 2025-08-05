@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'api.dart';
 
 /// Main menu screen for Space Iron.
 class MainMenuScreen extends StatelessWidget {
-  const MainMenuScreen({Key? key}) : super(key: key);
+  const MainMenuScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -36,22 +37,57 @@ class MainMenuScreen extends StatelessWidget {
   }
 }
 
-/// Placeholder for the main game screen.
-class GameScreen extends StatelessWidget {
-  const GameScreen({Key? key}) : super(key: key);
+/// Game screen that fetches and displays mock player data.
+class GameScreen extends StatefulWidget {
+  const GameScreen({super.key});
+
+  @override
+  State<GameScreen> createState() => _GameScreenState();
+}
+
+class _GameScreenState extends State<GameScreen> {
+  late Future<List<dynamic>> _playersFuture;
+
+  @override
+  void initState() {
+    super.initState();
+    _playersFuture = ApiService.fetchPlayers();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Game')),
-      body: const Center(child: Text('Game Screen Placeholder')),
+      body: FutureBuilder<List<dynamic>>(
+        future: _playersFuture,
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(child: CircularProgressIndicator());
+          } else if (snapshot.hasError) {
+            return Center(child: Text('Error: ${snapshot.error}'));
+          } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+            return const Center(child: Text('No players found.'));
+          }
+          final players = snapshot.data!;
+          return ListView.builder(
+            itemCount: players.length,
+            itemBuilder: (context, index) {
+              final player = players[index];
+              return ListTile(
+                title: Text(player['name'] ?? 'Unknown'),
+                subtitle: Text('ID: ${player['id']}'),
+              );
+            },
+          );
+        },
+      ),
     );
   }
 }
 
 /// Placeholder for the settings screen.
 class SettingsScreen extends StatelessWidget {
-  const SettingsScreen({Key? key}) : super(key: key);
+  const SettingsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +100,7 @@ class SettingsScreen extends StatelessWidget {
 
 /// Placeholder for the about screen.
 class AboutScreen extends StatelessWidget {
-  const AboutScreen({Key? key}) : super(key: key);
+  const AboutScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
