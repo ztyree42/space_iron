@@ -1,15 +1,18 @@
 {
   "players": [
-    { "id": 1, "name": "CommanderX", "alliance": "Alpha", "resources": { "metal": 1000, "crystal": 500 }, "fleet": [1], "planets": [1] },
-    { "id": 2, "name": "NovaQueen", "alliance": "Beta", "resources": { "metal": 800, "crystal": 700 }, "fleet": [2], "planets": [2] }
+    { "id": 1, "name": "CommanderX", "alliance": "Alpha", "resources": { "metal": 1000, "crystal": 500 }, "fleet": [1], "planets": [1], "status": "active" },
+    { "id": 2, "name": "NovaQueen", "alliance": "Beta", "resources": { "metal": 800, "crystal": 700 }, "fleet": [2], "planets": [2], "status": "alliance_member" },
+    { "id": 3, "name": "Newbie", "alliance": null, "resources": { "metal": 100, "crystal": 50 }, "fleet": [], "planets": [3], "status": "new_user" }
   ],
   "planets": [
     { "id": 1, "owner": 1, "name": "Terra Nova", "resources": { "metal": 200, "crystal": 100 } },
-    { "id": 2, "owner": 2, "name": "Beta Prime", "resources": { "metal": 300, "crystal": 400 } }
+    { "id": 2, "owner": 2, "name": "Beta Prime", "resources": { "metal": 300, "crystal": 400 } },
+    { "id": 3, "owner": 3, "name": "Starter World", "resources": { "metal": 50, "crystal": 25 } }
   ],
   "auth": [
     { "id": 1, "username": "CommanderX", "token": "mock-jwt-token-1" },
-    { "id": 2, "username": "NovaQueen", "token": "mock-jwt-token-2" }
+    { "id": 2, "username": "NovaQueen", "token": "mock-jwt-token-2" },
+    { "id": 3, "username": "Newbie", "token": "mock-jwt-token-3" }
   ],
   "fleets": [
     { "id": 1, "owner": 1, "ships": [{ "type": "frigate", "count": 10 }] },
