@@ -51,6 +51,12 @@ final response = await http.get(Uri.parse('http://localhost:4000/players'));
 
 ## Switching Between Mock and Real Backend
 - Use environment variables or config files in your frontend to toggle between the mock server and the real backend.
-- See `ApiConfig` in `lib/api.dart` for an example.
+- **Flutter example:**
+  - By default, the app uses the mock server at `http://localhost:4000`.
+  - To use the real backend, run:
+    ```sh
+    flutter run --dart-define=USE_MOCK_API=false
+    ```
+  - See `ApiConfig` in `lib/api.dart` for details.
 
 ---
